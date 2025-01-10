@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "comp-graph-lab3"
+version = "0.1.0"
+description = "Lab 3"
+authors = ["Parzival-05 <parzivalwasd@gmail.com>"]
+license = "GNU"
+readme = "README.md"
+packages = [{ include = "comp_graph" }]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+opencv-python = "^4.10.0.84"
+nptyping = "^2.5.0"
+torch = "^2.5.1"
+
+[tool.poetry.group.formatter.dependencies]
+ruff = "^0.8.6"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff.lint]
+select = ["F", "E", "W", "B"]
+ignore = ["E501"]
+extend-select = ["E226"]
+preview = true
+explicit-preview-rules = true
