@@ -23,7 +23,7 @@ class SizeFeature(Feature):
 
 
 @dataclass
-class MeasureBrightnessFeature(Feature):
+class RiceFeatures(Feature):
     measure: MeasureFeature
     brightness: BrightnessFeature
     size: SizeFeature

@@ -8,8 +8,8 @@ from src.common import RiceImageType
 from src.features.features_classes import (
     BrightnessFeature,
     Feature,
-    MeasureBrightnessFeature,
     MeasureFeature,
+    RiceFeatures,
     SizeFeature,
 )
 
@@ -117,7 +117,7 @@ class SizeFeatureExtraction(FeatureExtraction[SizeFeature]):
         return SizeFeature(area=rice_area)
 
 
-class MeasureBrightnessFeatureExtraction(FeatureExtraction[MeasureBrightnessFeature]):
+class MeasureBrightnessFeatureExtraction(FeatureExtraction[RiceFeatures]):
     def __init__(
         self,
         measure_extractor: FeatureExtraction[MeasureFeature],
@@ -129,8 +129,8 @@ class MeasureBrightnessFeatureExtraction(FeatureExtraction[MeasureBrightnessFeat
         self.brightness_extractor = brightness_extractor
         self.size_extractor = size_extractor
 
-    def _extract(self, image: RiceImageType) -> MeasureBrightnessFeature:
+    def _extract(self, image: RiceImageType) -> RiceFeatures:
         mf = self.measure_extractor.extract(image)
         bf = self.brightness_extractor.extract(image)
         sf = self.size_extractor.extract(image)
-        return MeasureBrightnessFeature(measure=mf, brightness=bf, size=sf)
+        return RiceFeatures(measure=mf, brightness=bf, size=sf)
