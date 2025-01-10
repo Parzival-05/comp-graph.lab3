@@ -29,7 +29,7 @@ class MeasureFeatureExtraction(FeatureExtraction[MeasureFeature]):
         super().__init__(self._extract)
 
     def _extract(self, image: RiceImageType) -> MeasureFeature:
-        return MeasureFeature(weight=3, height=4)
+        return MeasureFeature(width=3, height=4)
 
 
 class BrightnessFeatureExtraction(FeatureExtraction[BrightnessFeature]):

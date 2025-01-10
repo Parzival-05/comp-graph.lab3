@@ -8,7 +8,7 @@ class Feature:
 
 @dataclass
 class MeasureFeature(Feature):
-    weight: int
+    width: int
     height: int
 
 
