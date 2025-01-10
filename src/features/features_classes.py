@@ -18,9 +18,12 @@ class BrightnessFeature(Feature):
 
 
 @dataclass
+class SizeFeature(Feature):
+    area: float
+
+
+@dataclass
 class MeasureBrightnessFeature(Feature):
     measure: MeasureFeature
     brightness: BrightnessFeature
-
-
-
+    size: SizeFeature

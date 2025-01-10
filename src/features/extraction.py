@@ -7,6 +7,7 @@ from src.features.features_classes import (
     Feature,
     MeasureBrightnessFeature,
     MeasureFeature,
+    SizeFeature,
 )
 
 T = TypeVar("T", bound=Feature)
@@ -39,18 +40,28 @@ class BrightnessFeatureExtraction(FeatureExtraction[BrightnessFeature]):
         return BrightnessFeature(average_brightness=30.0)
 
 
+class SizeFeatureExtraction(FeatureExtraction[SizeFeature]):
+    def __init__(self):
+        super().__init__(self._extract)
+
+    def _extract(self, image: RiceImageType) -> SizeFeature:
+        return SizeFeature(area=30.0)
+
+
 class MeasureBrightnessFeatureExtraction(FeatureExtraction[MeasureBrightnessFeature]):
     def __init__(
         self,
         measure_extractor: FeatureExtraction[MeasureFeature],
         brightness_extractor: FeatureExtraction[BrightnessFeature],
+        size_extractor: FeatureExtraction[SizeFeature],
     ):
         super().__init__(self._extract)
         self.measure_extractor = measure_extractor
         self.brightness_extractor = brightness_extractor
+        self.size_extractor = size_extractor
 
     def _extract(self, image: RiceImageType) -> MeasureBrightnessFeature:
         mf = self.measure_extractor.extract(image)
         bf = self.brightness_extractor.extract(image)
-
-        return MeasureBrightnessFeature(measure=mf, brightness=bf)
+        sf = self.size_extractor.extract(image)
+        return MeasureBrightnessFeature(measure=mf, brightness=bf, size=sf)
