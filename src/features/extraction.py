@@ -117,7 +117,7 @@ class SizeFeatureExtraction(FeatureExtraction[SizeFeature]):
         return SizeFeature(area=rice_area)
 
 
-class MeasureBrightnessFeatureExtraction(FeatureExtraction[RiceFeatures]):
+class RiceFeaturesExtraction(FeatureExtraction[RiceFeatures]):
     def __init__(
         self,
         measure_extractor: FeatureExtraction[MeasureFeature],
