@@ -1,3 +1,4 @@
+import warnings
 from pathlib import Path
 
 import cv2
@@ -5,6 +6,8 @@ import numpy as np
 import torch
 
 from src.common import RiceImageType
+
+warnings.simplefilter("ignore")
 
 PATH_TO_MODEL = "model/rice_classification_model.pt"
 LABELS = {
@@ -20,12 +23,22 @@ model = torch.load(PATH_TO_MODEL, map_location=torch.device(DEVICE))
 model.eval()
 
 
-def infer_by_path(image_path: Path) -> list:
-    image: RiceImageType = cv2.imread(image_path, cv2.IMREAD_COLOR)  # type: ignore
-    assert image.shape == (250, 250, 3)
+def preprocess_image(image: np.ndarray) -> RiceImageType:
+    if image.shape != (250, 250, 3):
+        raise ValueError(
+            f"Upload a three-channel 250x250 image, {str(image.shape)} is not suitable"
+        )
     image = image.astype(np.float32) / 255.0  # type: ignore
-    image = image.transpose((2, 0, 1))
-    return infer(image)
+    return image.transpose((2, 0, 1))
+
+
+def load_image(image_path: str | Path) -> RiceImageType:
+    image = cv2.imread(image_path, cv2.IMREAD_COLOR)  # type: ignore
+    return preprocess_image(image)
+
+
+def infer_by_path(image_path: str | Path) -> list:
+    return infer(load_image(image_path))
 
 
 def infer(image: RiceImageType) -> list:
