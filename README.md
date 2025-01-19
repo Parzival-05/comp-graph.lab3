@@ -25,3 +25,7 @@ Then you should have `Rice_Image_Dataset` directory with unpacked dataset.
 poetry run python3 app.py
 ```
 Then go to http://127.0.0.1:5000/.
+
+### Example:
+
+<img src="./static/demo_example.png">
