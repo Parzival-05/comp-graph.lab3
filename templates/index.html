@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Rice Recognition</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="upload-section">
+            <h1>Rice Recognition Tool</h1>
+            <p>Upload an image of rice from <a
+                    href="https://www.kaggle.com/datasets/muratkokludataset/rice-image-dataset">Rice Image Dataset</a>
+                to see the predicted class and probabilities</p>
+
+            {% if error %}
+            <p class="error-message">{{ error }}</p>
+            {% endif %}
+
+            <form method="post" enctype="multipart/form-data" class="upload-form">
+                <input type="file" name="file" class="file-input">
+                <input type="submit" value="Upload" class="submit-btn">
+            </form>
+        </div>
+        {% if results %}
+        <div class="results-section">
+            <div class="image-container">
+                <h2>Results:</h2>
+                <div class="image-with-filename">
+                    <img src="{{ url_for('uploaded_file', filename=image_filename) }}" alt="Uploaded image"
+                        class="uploaded-image">
+                    <p class="image-filename">{{ image_filename }}</p>
+                </div>
+            </div>
+            <div class="predicted-class">
+                <h3>Predicted class: {{ predicted_label }}</h3>
+            </div>
+            <div class="results-list-container">
+                <ul class="results-list">
+                    {% for label, probability in results.items() %}
+                    <li>{{ label }}: {{ probability }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+
+</html>

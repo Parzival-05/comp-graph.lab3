@@ -1,0 +1,102 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-image: url('/static/background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.container {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-height: 90vh;
+    overflow-y: auto;
+    text-align: center;
+    /* Центрируем текст внутри контейнера */
+}
+
+.upload-section,
+.results-section {
+    margin-bottom: 20px;
+}
+
+h1,
+h2,
+h3 {
+    color: white;
+}
+
+.error-message {
+    color: red;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.upload-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.file-input {
+    margin-bottom: 10px;
+}
+
+.submit-btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background-color: #0056b3;
+}
+
+.image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.uploaded-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.image-filename {
+    margin: 0;
+    font-size: 0.9em;
+    color: white;
+}
+
+.results-list-container {
+    display: flex;
+    justify-content: center;
+}
+
+.results-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.results-list li {
+    margin-bottom: 5px;
+    color: white;
+}
