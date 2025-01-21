@@ -33,7 +33,9 @@ def preprocess_image(image: np.ndarray) -> RiceImageType:
 
 
 def load_image(image_path: str | Path) -> RiceImageType:
-    image = cv2.imread(image_path, cv2.IMREAD_COLOR)  # type: ignore
+    image = cv2.imread(image_path, cv2.IMREAD_COLOR) # type: ignore
+    if image is None:
+        raise FileNotFoundError(f"Could not load image from path {image_path}")
     return preprocess_image(image)
 
 
