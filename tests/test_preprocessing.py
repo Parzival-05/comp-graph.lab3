@@ -8,6 +8,7 @@ from tests.constants import (
     PIXEL_MIN_VALUE,
     NORMALIZED_MIN,
     NORMALIZED_MAX,
+    PROCESSED_IMAGE_SHAPE,
 )
 
 
@@ -17,7 +18,9 @@ def test_preprocess_image_valid():
     )
     processed_image = preprocess_image(image)
 
-    assert processed_image.shape == (3, 250, 250), "Processed image has incorrect shape"
+    assert (
+        processed_image.shape == PROCESSED_IMAGE_SHAPE
+    ), "Processed image has incorrect shape"
     assert (
         NORMALIZED_MIN <= processed_image.min()
         and processed_image.max() <= NORMALIZED_MAX
