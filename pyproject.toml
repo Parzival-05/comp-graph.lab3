@@ -4,8 +4,8 @@ version = "0.1.0"
 description = "Lab 3"
 authors = ["Parzival-05 <parzivalwasd@gmail.com>"]
 license = "GNU"
+package-mode = false
 readme = "README.md"
-packages = [{ include = "comp_graph" }]
 
 [tool.poetry.dependencies]
 python = "^3.11"
