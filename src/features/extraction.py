@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Callable, Generic, TypeVar
+from typing import Callable, Generic, Optional, TypeVar
 
 import cv2
 import numpy as np
@@ -17,7 +17,9 @@ T = TypeVar("T", bound=Feature)
 
 
 class FeatureExtraction(ABC, Generic[T]):
-    def __init__(self, extractor: Callable[[RiceImageType], T]):
+    def __init__(self, extractor: Optional[Callable[[RiceImageType], T]] = None):
+        if extractor is None:
+            extractor = self._extract
         self._extractor = extractor
 
     @abstractmethod
@@ -28,9 +30,6 @@ class FeatureExtraction(ABC, Generic[T]):
 
 
 class MeasureFeatureExtraction(FeatureExtraction[MeasureFeature]):
-    def __init__(self):
-        super().__init__(self._extract)
-
     def _extract(self, image: RiceImageType) -> MeasureFeature:
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
@@ -75,9 +74,6 @@ class MeasureFeatureExtraction(FeatureExtraction[MeasureFeature]):
 
 
 class BrightnessFeatureExtraction(FeatureExtraction[BrightnessFeature]):
-    def __init__(self):
-        super().__init__(self._extract)
-
     def _extract(self, image: RiceImageType) -> BrightnessFeature:
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         _, thresh = cv2.threshold(gray, 50, 255, cv2.THRESH_BINARY)
@@ -99,9 +95,6 @@ class BrightnessFeatureExtraction(FeatureExtraction[BrightnessFeature]):
 
 
 class SizeFeatureExtraction(FeatureExtraction[SizeFeature]):
-    def __init__(self):
-        super().__init__(self._extract)
-
     def _extract(self, image: RiceImageType) -> SizeFeature:
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         _, thresh = cv2.threshold(gray, 50, 255, cv2.THRESH_BINARY)
@@ -124,7 +117,7 @@ class RiceFeaturesExtraction(FeatureExtraction[RiceFeatures]):
         brightness_extractor: FeatureExtraction[BrightnessFeature],
         size_extractor: FeatureExtraction[SizeFeature],
     ):
-        super().__init__(self._extract)
+        super().__init__()
         self.measure_extractor = measure_extractor
         self.brightness_extractor = brightness_extractor
         self.size_extractor = size_extractor
