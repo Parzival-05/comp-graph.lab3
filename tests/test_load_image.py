@@ -1,18 +1,27 @@
 import pytest
 from src.infer import load_image
+from tests.constants import (
+    TEST_IMAGE_NAME,
+    NONEXISTENT_PATH,
+    IMAGE_SHAPE,
+    PROCESSED_IMAGE_SHAPE,
+)
 
 
 def test_load_image_valid(tmp_path):
     import cv2
     import numpy as np
-    image = np.random.randint(0, 255, (250, 250, 3), dtype=np.uint8)
-    img_path = tmp_path / "test_image.jpg"
+
+    image = np.random.randint(0, 255, IMAGE_SHAPE, dtype=np.uint8)
+    img_path = tmp_path / TEST_IMAGE_NAME
     cv2.imwrite(str(img_path), image)
 
     processed_image = load_image(img_path)
-    assert processed_image.shape == (3, 250, 250), "Processed image has incorrect shape"
+    assert (
+        processed_image.shape == PROCESSED_IMAGE_SHAPE
+    ), "Processed image has incorrect shape"
 
 
 def test_load_image_invalid_path():
     with pytest.raises(FileNotFoundError):
-        load_image("nonexistent_file.jpg")
+        load_image(NONEXISTENT_PATH)
