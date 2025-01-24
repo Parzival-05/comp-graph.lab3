@@ -32,5 +32,5 @@ def test_preprocess_image_invalid_size():
         PIXEL_MIN_VALUE, PIXEL_MAX_VALUE, INVALID_IMAGE_SHAPE, dtype=np.uint8
     )
 
-    with pytest.raises(ValueError, match="Upload a three-channel 250x250 image"):
+    with pytest.raises(ValueError, match="Upload a 3-channel 250x250 image"):
         preprocess_image(image)
