@@ -1,28 +1,29 @@
-import pytest
-import numpy as np
 import cv2
+import numpy as np
+import pytest
+
+from src.common import IMAGE_SIZE
 from src.features.extraction import (
-    MeasureFeatureExtraction,
     BrightnessFeatureExtraction,
-    SizeFeatureExtraction,
+    MeasureFeatureExtraction,
     RiceFeaturesExtraction,
+    SizeFeatureExtraction,
 )
 from src.features.features_classes import (
-    MeasureFeature,
     BrightnessFeature,
-    SizeFeature,
+    MeasureFeature,
     RiceFeatures,
+    SizeFeature,
 )
 from tests.constants import (
-    IMAGE_SIZE,
-    IMAGE_CHANNELS,
-    RICE_RECT_TOP_LEFT,
-    RICE_RECT_BOTTOM_RIGHT,
-    BRIGHTNESS_MIN,
     BRIGHTNESS_MAX,
-    RICE_BRIGHTNESS,
-    MID_BRIGHTNESS,
+    BRIGHTNESS_MIN,
     EXPECTED_BRIGHTNESS_APPROX,
+    IMAGE_CHANNELS,
+    MID_BRIGHTNESS,
+    RICE_BRIGHTNESS,
+    RICE_RECT_BOTTOM_RIGHT,
+    RICE_RECT_TOP_LEFT,
     ROTATION_ANGLE,
 )
 

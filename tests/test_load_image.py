@@ -1,10 +1,10 @@
 import pytest
+
+from src.common import IMAGE_SHAPE, PROCESSED_IMAGE_SHAPE
 from src.infer import load_image
 from tests.constants import (
-    TEST_IMAGE_NAME,
     NONEXISTENT_PATH,
-    IMAGE_SHAPE,
-    PROCESSED_IMAGE_SHAPE,
+    TEST_IMAGE_NAME,
 )
 
 

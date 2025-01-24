@@ -1,9 +1,12 @@
+from unittest.mock import patch
+
+import numpy as np
 import pytest
 import torch
-import numpy as np
-from unittest.mock import patch
-from src.infer import infer, infer_by_path, LABELS
-from tests.constants import IMAGE_SHAPE, DUMMY_IMAGE_PATH
+
+from src.common import IMAGE_SHAPE
+from src.infer import LABELS, infer, infer_by_path
+from tests.constants import DUMMY_IMAGE_PATH
 
 
 @patch("src.infer.model")  # mock the model object
