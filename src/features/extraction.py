@@ -76,21 +76,16 @@ class MeasureFeatureExtraction(FeatureExtraction[MeasureFeature]):
             raise RuntimeError("There is no rice on image")
         rice_contour = get_largest_contour(contours)
 
-        rect = cv2.minAreaRect(rice_contour)
         # Calculate the angle to determine orientation
+        rect = cv2.minAreaRect(rice_contour)
         angle = rect[2]
-
-        if angle < -45:
-            angle += 90
-
         center = tuple(map(int, rect[0]))
 
         # Correct the angle and rotate the image to align the rice grain horizontally
-        M = cv2.getRotationMatrix2D(center, angle, 1.0)
+        M = cv2.getRotationMatrix2D(center=center, angle=angle, scale=1.0)
         rotated = cv2.warpAffine(
             image, M, (image.shape[1], image.shape[0]), flags=cv2.INTER_CUBIC
         )
-
         contours_rotated = get_contours(rotated)
         if not contours_rotated:
             raise RuntimeError("There is no rice on image")
@@ -99,6 +94,7 @@ class MeasureFeatureExtraction(FeatureExtraction[MeasureFeature]):
         # Calculate the bounding rectangle dimensions and return the width and height of the rice grain
         _, _, w, h = cv2.boundingRect(new_contour)
 
+        # Calculate height as max of width and height and width as min
         height = max(w, h)
         width = min(w, h)
         return MeasureFeature(width=width, height=height)
