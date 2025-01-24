@@ -1,7 +1,9 @@
 # comp-graph.lab3
 
-![Run python tests](https://github.com/Parzival-05/comp-graph.lab3/actions/workflows/tests.yaml/badge.svg)
-![Code style & linting](https://github.com/Parzival-05/comp-graph.lab3/actions/workflows/code_style.yaml/badge.svg)
+
+[![Run python tests](https://github.com/Parzival-05/comp-graph.lab3/actions/workflows/tests.yaml/badge.svg)](
+https://github.com/Parzival-05/comp-graph.lab3/actions/workflows/tests.yaml)
+[![Code style & linting](https://github.com/Parzival-05/comp-graph.lab3/actions/workflows/code_style.yaml/badge.svg)](https://github.com/Parzival-05/comp-graph.lab3/actions/workflows/code_style.yaml)
 
 ## Get Started 
 
