@@ -32,6 +32,10 @@ Project structure:
 pip install poetry
 poetry install
 ```
+### Install pre-commit hooks (for devs)
+```bash
+pre-commit install
+```
 
 ### Download and unzip dataset
 
