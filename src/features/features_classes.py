@@ -7,7 +7,7 @@ class Feature:
     Abstract base class for all feature types.
 
     This class serves as a foundation for different types of features
-    extracted from rice grain images. 
+    extracted from rice grain images.
     """
 
     pass
