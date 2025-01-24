@@ -1,0 +1,1 @@
+This directory contains a pre-trained CNN model for rice classification, sourced from Kaggle. The model architecture and further details can be found at https://www.kaggle.com/code/melissamonfared/rice-image-classification-pytorch.
