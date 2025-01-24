@@ -1,14 +1,14 @@
 import numpy as np
 import pytest
+
+from src.common import IMAGE_SHAPE, PROCESSED_IMAGE_SHAPE
 from src.infer import preprocess_image
 from tests.constants import (
-    IMAGE_SHAPE,
     INVALID_IMAGE_SHAPE,
+    NORMALIZED_MAX,
+    NORMALIZED_MIN,
     PIXEL_MAX_VALUE,
     PIXEL_MIN_VALUE,
-    NORMALIZED_MIN,
-    NORMALIZED_MAX,
-    PROCESSED_IMAGE_SHAPE,
 )
 
 
