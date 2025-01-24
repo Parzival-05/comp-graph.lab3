@@ -152,6 +152,26 @@ class SizeFeatureExtraction(FeatureExtraction[SizeFeature]):
 
 
 class RiceFeaturesExtraction(FeatureExtraction[RiceFeatures]):
+    """
+    Feature extraction class to combine and extract a comprehensive set of rice features.
+
+    This class aggregates different types of feature extraction for rice images,
+    including measurements, brightness, and size. It utilizes instances of
+    `MeasureFeatureExtraction`, `BrightnessFeatureExtraction`, and `SizeFeatureExtraction`
+    to extract these individual features and combines them into a single `RiceFeatures` object.
+
+    This allows for a consolidated feature set to be extracted from a rice image,
+    useful for tasks like rice classification or analysis.
+
+    Args:
+        measure_extractor (FeatureExtraction[MeasureFeature]):
+            An instance of `MeasureFeatureExtraction` to extract measurement-based features of the rice grain.
+        brightness_extractor (FeatureExtraction[BrightnessFeature]):
+            An instance of `BrightnessFeatureExtraction` to extract brightness-based features of the rice grain.
+        size_extractor (FeatureExtraction[SizeFeature]):
+            An instance of `SizeFeatureExtraction` to extract size-based features of the rice grain.
+    """
+
     def __init__(
         self,
         measure_extractor: FeatureExtraction[MeasureFeature],
@@ -159,12 +179,12 @@ class RiceFeaturesExtraction(FeatureExtraction[RiceFeatures]):
         size_extractor: FeatureExtraction[SizeFeature],
     ):
         super().__init__()
-        self.measure_extractor = measure_extractor
-        self.brightness_extractor = brightness_extractor
-        self.size_extractor = size_extractor
+        self._measure_extractor = measure_extractor
+        self._brightness_extractor = brightness_extractor
+        self._size_extractor = size_extractor
 
     def _extract(self, image: RiceImageType) -> RiceFeatures:
-        mf = self.measure_extractor.extract(image)
-        bf = self.brightness_extractor.extract(image)
-        sf = self.size_extractor.extract(image)
+        mf = self._measure_extractor.extract(image)
+        bf = self._brightness_extractor.extract(image)
+        sf = self._size_extractor.extract(image)
         return RiceFeatures(measure=mf, brightness=bf, size=sf)
