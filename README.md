@@ -6,7 +6,7 @@ https://github.com/Parzival-05/comp-graph.lab3/actions/workflows/tests.yaml)
 [![Code style & linting](https://github.com/Parzival-05/comp-graph.lab3/actions/workflows/code_style.yaml/badge.svg)](https://github.com/Parzival-05/comp-graph.lab3/actions/workflows/code_style.yaml)
 
 ## Overview
-This repository contains a comprehensive tool designed to extract various features from rice grain images from the [Rice Image Dataset](https://www.kaggle.com/api/v1/datasets/download/muratkokludataset/rice-image-dataset). Leveraging computer vision techniques, this project focuses on measuring critical attributes of rice grains, including size, brightness, and orientation, and offers a pre-trained [Convolutional Neural Network (CNN) model](model/rice_classification_model.pt) for rice classification. 
+This repository contains a tool designed to extract various features from rice grain images from the [Rice Image Dataset](https://www.kaggle.com/api/v1/datasets/download/muratkokludataset/rice-image-dataset). Utilizing computer vision techniques, this project enables the measurement of some attributes of rice grains, such as size, brightness, and orientation. Moreover, it offers a pre-trained [Convolutional Neural Network (CNN) model](model/rice_classification_model.pt) for rice classification. 
 
 - Model description can be found in the [model's README](model/README.md).
 - The analysis of the model and some characteristics of the dataset can be found in the [notebook](experiments.ipynb).
