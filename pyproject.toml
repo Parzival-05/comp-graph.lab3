@@ -30,3 +30,7 @@ exclude = ["*.ipynb"]
 extend-select = ["E226"]
 preview = true
 explicit-preview-rules = true
+
+[tool.ruff.format]
+exclude = ["*.ipynb"]
+
